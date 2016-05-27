@@ -27,6 +27,7 @@ function getSome()
 
     return Optional::Some($a);
 }
+
 function getNone()
 {
     return Optional::None(A::class);
