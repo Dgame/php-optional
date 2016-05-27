@@ -15,38 +15,32 @@ final class None extends Optional
     /**
      * @var null|string
      */
-    private $class = null;
+    private $type = null;
 
     /**
      * None constructor.
      *
-     * @param string|null $class
+     * @param string|null $type
      */
-    private function __construct(string $class = null)
+    private function __construct(string $type = null)
     {
-        if ($class !== null && !class_exists($class)) {
-            throw new OptionalException('Eine Klasse mit dem Namen ' . $class . ' existiert nicht');
-        }
-
-        $this->class = $class;
+        $this->type = $type;
     }
 
     /**
-     * @param string|null $class
+     * @param string|null $type
      *
      * @return None
      */
-    public static function Of(string $class = null)
+    public static function Of(string $type = null)
     {
-        if ($class === null) {
-            $class = None::class;
+        $type = $type === null ? 'None' : Type::Alias($type);
+
+        if (!array_key_exists($type, self::$instances)) {
+            self::$instances[$type] = new self($type);
         }
 
-        if (!array_key_exists($class, self::$instances)) {
-            self::$instances[$class] = new self($class);
-        }
-
-        return self::$instances[$class];
+        return self::$instances[$type];
     }
 
     /**
@@ -65,8 +59,8 @@ final class None extends Optional
      */
     public function getIdentifier()
     {
-        if ($this->class !== null) {
-            return sprintf('%s(%s)', self::class, $this->class);
+        if ($this->type !== null) {
+            return sprintf('%s(%s)', self::class, $this->type);
         }
 
         return self::class;

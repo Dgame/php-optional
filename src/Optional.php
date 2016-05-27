@@ -9,23 +9,23 @@ namespace Optional;
 abstract class Optional
 {
     /**
-     * @param object $object
+     * @param $value
      *
-     * @return Some
+     * @return SomeObject|SomeValue
      */
-    public static function Some($object)
+    public static function Some($value)
     {
-        return new Some($object);
+        return SomeFactory::MakeSome($value);
     }
 
     /**
-     * @param string|null $class
+     * @param string|null $type
      *
      * @return None
      */
-    public static function None(string $class = null)
+    public static function None(string $type = null)
     {
-        return None::Of($class);
+        return None::Of($type);
     }
 
     /**
@@ -34,11 +34,11 @@ abstract class Optional
     abstract public function getIdentifier();
 
     /**
-     * @param string $class
+     * @param string $type
      *
      * @return bool
      */
-    public function is(string $class)
+    public function is(string $type)
     {
         return false;
     }
@@ -54,11 +54,11 @@ abstract class Optional
     }
 
     /**
-     * @param string $class
+     * @param string $type
      *
      * @return bool
      */
-    public function isSome(string $class)
+    public function isSome(string $type)
     {
         return false;
     }
@@ -72,23 +72,13 @@ abstract class Optional
     }
 
     /**
-     * @param string $class
-     *
-     * @throws OptionalException
-     */
-    public function as(string $class)
-    {
-        throw new OptionalException(sprintf('Optional: %s ist nicht %s', $this->getIdentifier(), $class));
-    }
-
-    /**
-     * @param string $class
+     * @param string $type
      *
      * @return None
      */
-    public function may(string $class)
+    public function may(string $type)
     {
-        return self::None($class);
+        return self::None($type);
     }
 
     /**

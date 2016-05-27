@@ -6,12 +6,16 @@ namespace Optional;
  * Class Some
  * @package Optional
  */
-final class Some extends Optional
+final class SomeObject extends Optional
 {
     /**
      * @var object
      */
     private $object = null;
+    /**
+     * @var null|string
+     */
+    private $type = null;
 
     /**
      * Some constructor.
@@ -25,6 +29,7 @@ final class Some extends Optional
         }
 
         $this->object = $object;
+        $this->type   = get_class($object);
     }
 
     /**
@@ -32,7 +37,7 @@ final class Some extends Optional
      */
     public function getIdentifier()
     {
-        return sprintf('%s(%s)', self::class, get_class($this->object));
+        return sprintf('%s(%s)', self::class, $this->type);
     }
 
     /**
@@ -63,21 +68,6 @@ final class Some extends Optional
     public function isSome(string $class)
     {
         return $this->is($class) || $this->extends($class);
-    }
-
-    /**
-     * @param string $class
-     *
-     * @return object
-     * @throws OptionalException
-     */
-    public function as(string $class)
-    {
-        if ($this->isSome($class)) {
-            return $this->unwrap();
-        }
-
-        throw new OptionalException(sprintf('Some: %s ist nicht %s', $this->getIdentifier(), $class));
     }
 
     /**

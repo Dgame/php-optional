@@ -6,5 +6,17 @@
         "psr-4": {
             "Optional\\": "src/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.*.*"
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/",
+            "src/"
+        ],
+        "psr-4": {
+            "Optional\\": "src/"
+        }
     }
 }
