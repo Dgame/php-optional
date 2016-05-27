@@ -5,7 +5,7 @@ Rust-like Optional-type for PHP 7
 ```php
 use Optional\Optional;
 
-class A
+class FooBar
 {
     public function foo()
     {
