@@ -4,23 +4,6 @@ require_once 'vendor/autoload.php';
 
 use Optional\Optional;
 
-class A
-{
-    public function foo()
-    {
-        print __METHOD__ . PHP_EOL;
-
-        return $this;
-    }
-
-    public function bar()
-    {
-        print __METHOD__ . PHP_EOL;
-
-        return $this;
-    }
-}
-
 function getSome()
 {
     $a = new FooBar();
