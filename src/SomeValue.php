@@ -53,7 +53,7 @@ final class SomeValue extends Optional
      */
     public function isSome(string $type)
     {
-        return Type::Of($type)->has($this->value);
+        return Type::Instance($type)->has($this->value);
     }
 
     /**

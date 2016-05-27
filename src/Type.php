@@ -64,7 +64,7 @@ final class Type
      *
      * @return Type
      */
-    public static function Of(string $type)
+    public static function Instance(string $type)
     {
         $type = self::Alias($type);
         if (!array_key_exists($type, self::$instances)) {
