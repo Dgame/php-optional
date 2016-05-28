@@ -1,4 +1,19 @@
 {
+    "name": "php-optional",
+    "description": "php optional",
+    "license": "MIT",
+    "type": "library",
+    "homepage": "https://github.com/php-optional",
+    "authors": [
+        {
+            "name": "Randy Schuett ",
+            "email": "rswhite4@gmail.com",
+            "homepage": "https://github.com/php-optional"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
     "autoload": {
         "classmap": [
             "src/"
