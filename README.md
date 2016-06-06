@@ -57,7 +57,12 @@ var_dump($none->is(FooBar::class));
 var_dump($none->isNone());
 var_dump($none->getIdentifier());
 var_dump($none->may(FooBar::class));
-var_dump($none->unwrap());
+
+try {
+    $none->expect('Is this None?');
+} catch (OptionalException $oe) {
+    var_dump($oe->getMessage()); // 'Is this None?' <- Yes, it is :)
+}
 
 $none->may(FooBar::class)->foo()->bar();
 ```
