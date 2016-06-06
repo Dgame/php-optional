@@ -32,7 +32,7 @@ final class None extends Optional
      *
      * @return None
      */
-    public static function Of(string $type = null)
+    public static function Of(string $type = null) : None
     {
         $type = $type === null ? 'None' : Type::Alias($type);
 
@@ -49,7 +49,7 @@ final class None extends Optional
      *
      * @return $this
      */
-    public function __call(string $name, array $args)
+    public function __call(string $name, array $args) : None
     {
         return $this;
     }
@@ -57,7 +57,7 @@ final class None extends Optional
     /**
      * @return string
      */
-    public function getIdentifier()
+    public function getIdentifier() : string
     {
         if ($this->type !== null) {
             return sprintf('%s(%s)', self::class, $this->type);
@@ -69,8 +69,36 @@ final class None extends Optional
     /**
      * @return bool
      */
-    public function isNone()
+    public function isNone() : bool
     {
         return true;
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return mixed
+     */
+    public function may(string $type)
+    {
+        return $this;
+    }
+
+    /**
+     * @param string $msg
+     *
+     * @throws OptionalException
+     */
+    public function expect(string $msg)
+    {
+        throw new OptionalException($msg);
+    }
+
+    /**
+     * @throws OptionalException
+     */
+    public function unwrap()
+    {
+        throw new OptionalException('You tried to unwrap ' . self::class);
     }
 }

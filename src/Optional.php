@@ -23,22 +23,22 @@ abstract class Optional
      *
      * @return None
      */
-    public static function None(string $type = null)
+    public static function None(string $type = null) : None
     {
         return None::Of($type);
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    abstract public function getIdentifier();
+    abstract public function getIdentifier() : string;
 
     /**
      * @param string $type
      *
      * @return bool
      */
-    public function is(string $type)
+    public function is(string $type) : bool
     {
         return false;
     }
@@ -48,7 +48,7 @@ abstract class Optional
      *
      * @return bool
      */
-    public function extends(string $class)
+    public function extends(string $class) : bool
     {
         return false;
     }
@@ -58,7 +58,7 @@ abstract class Optional
      *
      * @return bool
      */
-    public function isSome(string $type)
+    public function isSome(string $type) : bool
     {
         return false;
     }
@@ -66,7 +66,7 @@ abstract class Optional
     /**
      * @return bool
      */
-    public function isNone()
+    public function isNone() : bool
     {
         return false;
     }
@@ -74,18 +74,19 @@ abstract class Optional
     /**
      * @param string $type
      *
-     * @return None
+     * @return mixed
      */
-    public function may(string $type)
-    {
-        return self::None($type);
-    }
+    abstract public function may(string $type);
 
     /**
-     * @return null
+     * @param string $msg
+     *
+     * @return mixed
      */
-    public function unwrap()
-    {
-        return null;
-    }
+    abstract public function expect(string $msg);
+
+    /**
+     * @return mixed
+     */
+    abstract public function unwrap();
 }

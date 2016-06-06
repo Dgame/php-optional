@@ -64,7 +64,7 @@ final class Type
      *
      * @return Type
      */
-    public static function Instance(string $type)
+    public static function Instance(string $type) : Type
     {
         $type = self::Alias($type);
         if (!array_key_exists($type, self::$instances)) {
@@ -79,7 +79,7 @@ final class Type
      *
      * @return string
      */
-    public static function Alias(string $type)
+    public static function Alias(string $type) : string
     {
         if (array_key_exists($type, self::$Alias)) {
             return self::$Alias[$type];
@@ -91,7 +91,7 @@ final class Type
     /**
      * @return callable
      */
-    public function getValidator()
+    public function getValidator() : callable
     {
         return self::$Validators[$this->type];
     }
@@ -101,7 +101,7 @@ final class Type
      *
      * @return bool
      */
-    public function has($value)
+    public function has($value) : bool
     {
         return call_user_func($this->getValidator(), $value);
     }

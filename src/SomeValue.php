@@ -31,7 +31,7 @@ final class SomeValue extends Optional
     /**
      * @return string
      */
-    public function getIdentifier()
+    public function getIdentifier() : string
     {
         return sprintf('%s(%s)', self::class, $this->type);
     }
@@ -41,7 +41,7 @@ final class SomeValue extends Optional
      *
      * @return bool
      */
-    public function is(string $type)
+    public function is(string $type) : bool
     {
         return $this->type === Type::Alias($type);
     }
@@ -51,7 +51,7 @@ final class SomeValue extends Optional
      *
      * @return bool
      */
-    public function isSome(string $type)
+    public function isSome(string $type) : bool
     {
         return Type::Instance($type)->has($this->value);
     }
@@ -67,7 +67,17 @@ final class SomeValue extends Optional
             return $this->unwrap();
         }
 
-        return parent::may($type);
+        return None::Of($type);
+    }
+
+    /**
+     * @param string $msg
+     *
+     * @return mixed
+     */
+    public function expect(string $msg)
+    {
+        return $this->unwrap();
     }
 
     /**

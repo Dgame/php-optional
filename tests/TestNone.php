@@ -4,6 +4,7 @@ require_once '../vendor/autoload.php';
 
 use Optional\None;
 use Optional\Optional;
+use Optional\OptionalException;
 
 final class TestNone extends PHPUnit_Framework_TestCase
 {
@@ -26,6 +27,22 @@ final class TestNone extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->none->isNone());
     }
 
+    public function testExpect()
+    {
+        $this->expectException(OptionalException::class);
+        $this->expectExceptionMessage('That is None?!');
+
+        $this->none->expect('That is None?!');
+    }
+
+    public function testUnwrap()
+    {
+        $this->expectException(OptionalException::class);
+        $this->expectExceptionMessage('You tried to unwrap ' . None::class);
+
+        $this->none->unwrap();
+    }
+
     public function testIdentifier()
     {
         $this->assertEquals('Optional\None(FooBar)', $this->none->getIdentifier());
@@ -33,7 +50,6 @@ final class TestNone extends PHPUnit_Framework_TestCase
 
     public function testExecution()
     {
-        $this->assertEquals(null, $this->none->unwrap());
         $this->assertEquals('Optional\None', get_class($this->none->may(FooBar::class)));
         $this->assertInstanceOf('Optional\None', $this->none->may(FooBar::class)->foo()->bar());
     }

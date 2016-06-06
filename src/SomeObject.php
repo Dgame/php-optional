@@ -35,7 +35,7 @@ final class SomeObject extends Optional
     /**
      * @return string
      */
-    public function getIdentifier()
+    public function getIdentifier() : string
     {
         return sprintf('%s(%s)', self::class, $this->type);
     }
@@ -45,7 +45,7 @@ final class SomeObject extends Optional
      *
      * @return bool
      */
-    public function is(string $class)
+    public function is(string $class) : bool
     {
         return is_a($this->object, $class);
     }
@@ -55,7 +55,7 @@ final class SomeObject extends Optional
      *
      * @return bool
      */
-    public function extends(string $class)
+    public function extends(string $class) : bool
     {
         return is_subclass_of($this->object, $class);
     }
@@ -65,7 +65,7 @@ final class SomeObject extends Optional
      *
      * @return bool
      */
-    public function isSome(string $class)
+    public function isSome(string $class) : bool
     {
         return $this->is($class) || $this->extends($class);
     }
@@ -81,7 +81,17 @@ final class SomeObject extends Optional
             return $this->unwrap();
         }
 
-        return parent::may($class);
+        return None::Of($class);
+    }
+
+    /**
+     * @param string $msg
+     *
+     * @return object
+     */
+    public function expect(string $msg)
+    {
+        return $this->unwrap();
     }
 
     /**
