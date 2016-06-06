@@ -34,7 +34,7 @@ final class None extends Optional
      */
     public static function Of(string $type = null) : None
     {
-        $type = $type === null ? 'None' : Type::Alias($type);
+        $type = $type === null ? self::class : Type::Alias($type);
 
         if (!array_key_exists($type, self::$instances)) {
             self::$instances[$type] = new self($type);
