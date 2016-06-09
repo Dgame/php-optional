@@ -2,9 +2,9 @@
 
 require_once '../vendor/autoload.php';
 
-use Optional\None;
-use Optional\Optional;
-use Optional\OptionalException;
+use Dgame\Optional\None;
+use Dgame\Optional\Optional;
+use Dgame\Optional\OptionalException;
 
 final class TestNone extends PHPUnit_Framework_TestCase
 {
@@ -45,12 +45,12 @@ final class TestNone extends PHPUnit_Framework_TestCase
 
     public function testIdentifier()
     {
-        $this->assertEquals('Optional\None(FooBar)', $this->none->getIdentifier());
+        $this->assertEquals('Dgame\Optional\None(FooBar)', $this->none->getIdentifier());
     }
 
     public function testExecution()
     {
-        $this->assertEquals('Optional\None', get_class($this->none->may(FooBar::class)));
-        $this->assertInstanceOf('Optional\None', $this->none->may(FooBar::class)->foo()->bar());
+        $this->assertEquals('Dgame\Optional\None', get_class($this->none->may(FooBar::class)));
+        $this->assertInstanceOf('Dgame\Optional\None', $this->none->may(FooBar::class)->foo()->bar());
     }
 }

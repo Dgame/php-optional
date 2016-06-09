@@ -2,8 +2,8 @@
 
 require_once '../vendor/autoload.php';
 
-use Optional\Optional;
-use Optional\SomeObject;
+use Dgame\Optional\Optional;
+use Dgame\Optional\SomeObject;
 
 final class TestSomeObject extends PHPUnit_Framework_TestCase
 {
@@ -28,7 +28,7 @@ final class TestSomeObject extends PHPUnit_Framework_TestCase
 
     public function testIdentifier()
     {
-        $this->assertEquals('Optional\SomeObject(FooBar)', $this->some->getIdentifier());
+        $this->assertEquals('Dgame\Optional\SomeObject(FooBar)', $this->some->getIdentifier());
     }
 
     public function testExecution()

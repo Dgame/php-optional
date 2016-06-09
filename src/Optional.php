@@ -1,10 +1,10 @@
 <?php
 
-namespace Optional;
+namespace Dgame\Optional;
 
 /**
  * Class Optional
- * @package Optional
+ * @package Dgame\Optional
  */
 abstract class Optional
 {

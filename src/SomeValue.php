@@ -1,10 +1,10 @@
 <?php
 
-namespace Optional;
+namespace Dgame\Optional;
 
 /**
  * Class SomeValue
- * @package Optional
+ * @package Dgame\Optional
  */
 final class SomeValue extends Optional
 {

@@ -19,7 +19,7 @@
             "src/"
         ],
         "psr-4": {
-            "Optional\\": "src/"
+            "Dgame\\Optional\\": "src/"
         }
     },
     "require-dev": {
@@ -27,11 +27,7 @@
     },
     "autoload-dev": {
         "classmap": [
-            "tests/",
-            "src/"
-        ],
-        "psr-4": {
-            "Optional\\": "src/"
-        }
+            "tests/"
+        ]
     }
 }

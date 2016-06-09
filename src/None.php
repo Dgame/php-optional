@@ -1,10 +1,10 @@
 <?php
 
-namespace Optional;
+namespace Dgame\Optional;
 
 /**
  * Class None
- * @package Optional
+ * @package Dgame\Optional
  */
 final class None extends Optional
 {
@@ -47,7 +47,7 @@ final class None extends Optional
      * @param string $name
      * @param array  $args
      *
-     * @return $this
+     * @return None
      */
     public function __call(string $name, array $args) : None
     {

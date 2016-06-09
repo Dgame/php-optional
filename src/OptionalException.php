@@ -1,10 +1,10 @@
 <?php
 
-namespace Optional;
+namespace Dgame\Optional;
 
 /**
  * Class OptionalException
- * @package Optional
+ * @package Dgame\Optional
  */
 final class OptionalException extends \Exception
 {

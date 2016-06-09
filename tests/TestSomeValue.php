@@ -2,8 +2,8 @@
 
 require_once '../vendor/autoload.php';
 
-use Optional\Optional;
-use Optional\SomeValue;
+use Dgame\Optional\Optional;
+use Dgame\Optional\SomeValue;
 
 final class TestSomeValue extends PHPUnit_Framework_TestCase
 {
@@ -32,7 +32,7 @@ final class TestSomeValue extends PHPUnit_Framework_TestCase
 
     public function testIdentifier()
     {
-        $this->assertEquals('Optional\SomeValue(int)', $this->some->getIdentifier());
+        $this->assertEquals('Dgame\Optional\SomeValue(int)', $this->some->getIdentifier());
     }
 
     public function testExecution()
@@ -40,7 +40,7 @@ final class TestSomeValue extends PHPUnit_Framework_TestCase
         $this->assertNotNull($this->some->unwrap());
         $this->assertEquals(42, $this->some->unwrap());
         $this->assertEquals(42, $this->some->may('int'));
-        $this->assertEquals('Optional\None', get_class($this->some->may('float')));
-        $this->assertEquals('Optional\None(float)', $this->some->may('float')->getIdentifier());
+        $this->assertEquals('Dgame\Optional\None', get_class($this->some->may('float')));
+        $this->assertEquals('Dgame\Optional\None(float)', $this->some->may('float')->getIdentifier());
     }
 }

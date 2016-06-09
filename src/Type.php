@@ -1,10 +1,10 @@
 <?php
 
-namespace Optional;
+namespace Dgame\Optional;
 
 /**
  * Class Type
- * @package Optional
+ * @package Dgame\Optional
  */
 final class Type
 {
