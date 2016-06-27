@@ -1,64 +1,19 @@
 <?php
 
-namespace Dgame\Optional;
+namespace Dgame\Iterator\Optional;
 
 /**
  * Class Optional
- * @package Dgame\Optional
+ * @package Dgame\Iterator\Optional
  */
 abstract class Optional
 {
     /**
-     * @param $value
-     *
-     * @return SomeObject|SomeValue
-     */
-    public static function Some($value)
-    {
-        return SomeFactory::MakeSome($value);
-    }
-
-    /**
-     * @param string|null $type
-     *
-     * @return None
-     */
-    public static function None(string $type = null) : None
-    {
-        return None::Of($type);
-    }
-
-    /**
-     * @return string
-     */
-    abstract public function getIdentifier() : string;
-
-    /**
-     * @param string $type
+     * @param null|mixed $some
      *
      * @return bool
      */
-    public function is(string $type) : bool
-    {
-        return false;
-    }
-
-    /**
-     * @param string $class
-     *
-     * @return bool
-     */
-    public function extends(string $class) : bool
-    {
-        return false;
-    }
-
-    /**
-     * @param string $type
-     *
-     * @return bool
-     */
-    public function isSome(string $type) : bool
+    public function isSome(&$some = null) : bool
     {
         return false;
     }
@@ -72,21 +27,72 @@ abstract class Optional
     }
 
     /**
-     * @param string $type
-     *
      * @return mixed
      */
-    abstract public function may(string $type);
-
-    /**
-     * @param string $msg
-     *
-     * @return mixed
-     */
-    abstract public function expect(string $msg);
+    abstract public function assume();
 
     /**
      * @return mixed
      */
     abstract public function unwrap();
+
+    /**
+     * @param callable $callback
+     *
+     * @return Optional
+     */
+    abstract public function ensure(callable $callback) : Optional;
+
+    /**
+     * @param callable          $callback
+     * @param string|\Exception $exception
+     *
+     * @return Some
+     * @throws \Exception
+     */
+    final public function enforce(callable $callback, $exception) : Some
+    {
+        $result = $this->ensure($callback);
+        if ($result->isNone()) {
+            if ($exception instanceof \Exception) {
+                throw $exception;
+            }
+
+            throw new \Exception($exception);
+        }
+
+        return $result;
+    }
+}
+
+/**
+ * @param $value
+ *
+ * @return Some
+ */
+function some($value) : Some
+{
+    return new Some($value);
+}
+
+/**
+ * @return None
+ */
+function none() : None
+{
+    return None::Instance();
+}
+
+/**
+ * @param $value
+ *
+ * @return Optional
+ */
+function maybe($value) : Optional
+{
+    if (Some::Verify($value)) {
+        return some($value);
+    }
+
+    return none();
 }

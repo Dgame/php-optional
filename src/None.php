@@ -1,69 +1,35 @@
 <?php
 
-namespace Dgame\Optional;
+namespace Dgame\Iterator\Optional;
 
 /**
  * Class None
- * @package Dgame\Optional
+ * @package Dgame\Iterator\Optional
  */
 final class None extends Optional
 {
     /**
-     * @var None[]
+     * @var None
      */
-    private static $instances = [];
-    /**
-     * @var null|string
-     */
-    private $type = null;
+    private static $instance = null;
 
     /**
      * None constructor.
-     *
-     * @param string|null $type
      */
-    private function __construct(string $type = null)
+    private function __construct()
     {
-        $this->type = $type;
     }
 
     /**
-     * @param string|null $type
-     *
      * @return None
      */
-    public static function Of(string $type = null) : None
+    public static function Instance() : None
     {
-        $type = $type === null ? self::class : Type::Alias($type);
-
-        if (!array_key_exists($type, self::$instances)) {
-            self::$instances[$type] = new self($type);
+        if (self::$instance === null) {
+            self::$instance = new self();
         }
 
-        return self::$instances[$type];
-    }
-
-    /**
-     * @param string $name
-     * @param array  $args
-     *
-     * @return None
-     */
-    public function __call(string $name, array $args) : None
-    {
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIdentifier() : string
-    {
-        if ($this->type !== null) {
-            return sprintf('%s(%s)', self::class, $this->type);
-        }
-
-        return self::class;
+        return self::$instance;
     }
 
     /**
@@ -75,30 +41,36 @@ final class None extends Optional
     }
 
     /**
-     * @param string $type
-     *
-     * @return mixed
+     * @return NullObject
      */
-    public function may(string $type)
+    public function assume()
+    {
+        return NullObject::Instance();
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function unwrap()
+    {
+        throw new \Exception('No value');
+    }
+
+    /**
+     * @param callable $callback
+     *
+     * @return Optional
+     */
+    public function ensure(callable $callback) : Optional
     {
         return $this;
     }
 
     /**
-     * @param string $msg
-     *
-     * @throws OptionalException
+     * @return string
      */
-    public function expect(string $msg)
+    public function __toString() : string
     {
-        throw new OptionalException($msg);
-    }
-
-    /**
-     * @throws OptionalException
-     */
-    public function unwrap()
-    {
-        throw new OptionalException('You tried to unwrap ' . self::class);
+        return 'None';
     }
 }
