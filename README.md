@@ -1,92 +1,58 @@
 # php-optional
 Rust-like Optional-type for PHP 7
 
-###example
+### Some - a valid Value
 ```php
-use Optional\Optional;
-
-class FooBar
-{
-    public function foo()
-    {
-        print __METHOD__ . PHP_EOL;
-        return $this;
-    }
-    public function bar()
-    {
-        print __METHOD__ . PHP_EOL;
-        return $this;
-    }
-}
-
-function getSome()
-{
-    $a = new FooBar();
-    return Optional::Some($a);
-}
-
-function getNone()
-{
-    return Optional::None(FooBar::class);
-}
+$some = some(42);
+$this->assertTrue($some->isSome());
+$this->assertEquals(42, $some->unwrap());
 ```
 
-#### Some-Object
-
+### Some with argument unpacking
 ```php
-$some = getSome();
-
-var_dump($some->isSome(FooBar::class));
-var_dump($some->extends(FooBar::class));
-var_dump($some->is(FooBar::class));
-var_dump($some->isNone());
-var_dump($some->getIdentifier());
-var_dump($some->may(FooBar::class));
-var_dump($some->unwrap());
-
-$some->may(FooBar::class)->foo()->bar();
+$some = some(42);
+$this->assertTrue($some->isSome($value));
+$this->assertFalse($some->isNone());
+$this->assertEquals(42, $value);
 ```
 
-#### None
+### None - an invalid value
 ```php
-$none = getNone();
-
-var_dump($none->isSome(FooBar::class));
-var_dump($none->extends(FooBar::class));
-var_dump($none->is(FooBar::class));
-var_dump($none->isNone());
-var_dump($none->getIdentifier());
-var_dump($none->may(FooBar::class));
-
-try {
-    $none->expect('Is this None?');
-} catch (OptionalException $oe) {
-    var_dump($oe->getMessage()); // 'Is this None?' <- Yes, it is :)
-}
-
-$none->may(FooBar::class)->foo()->bar();
+$none = none();
+$this->assertTrue($none->isNone());
+$this->assertFalse($none->isSome());
 ```
 
-#### Some-Value
+### None with argument unpacking
 ```php
-$some = Optional::Some(42);
+$none = none();
+$this->assertTrue($none->isNone());
+$this->assertFalse($none->isSome($value));
+$this->assertNull($value);
+```
 
-var_dump($some->isSome('int'));
-var_dump($some->isSome('float'));
-var_dump($some->isSome('numeric'));
-var_dump($some->isSome('scalar'));
-var_dump($some->isSome('string'));
-var_dump($some->isSome('bool'));
-var_dump($some->isSome('array'));
-var_dump($some->isNone());
-var_dump($some->is('int'));
-var_dump($some->is('float'));
-var_dump($some->is('numeric'));
-var_dump($some->is('scalar'));
-var_dump($some->is('string'));
-var_dump($some->is('bool'));
-var_dump($some->is('array'));
-var_dump($some->getIdentifier());
-var_dump($some->may('int'));
-var_dump($some->unwrap());
+### Maybe - decides for you if your value is a `Some` or a `None`
+```php
+$maybe = maybe(null);
+$this->assertTrue($maybe->isNone());
+$maybe = maybe(42);
+$this->assertTrue($maybe->isSome());
+$this->assertEquals(42, $maybe->unwrap());
+```
+
+### Ensure that a condition is fulfilled
+```php
+$result = some(0)->ensure(function($value) {
+    return $value > 0;
+});
+$this->assertTrue($result->isNone());
+```
+
+### Enforce that a condition is fulfilled
+```php
+$this->expectException(Exception::class);
+$this->expectExceptionMessage('None');
+some(0)->enforce(function($value) {
+    return $value > 0;
+}, new Exception('None'));
 ```
