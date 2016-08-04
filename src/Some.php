@@ -20,7 +20,7 @@ final class Some extends Optional
      */
     public static function Verify($value) : bool
     {
-        return $value !== null && $value !== false;
+        return $value !== null;
     }
 
     /**
