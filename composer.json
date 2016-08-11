@@ -4,6 +4,14 @@
     "license": "MIT",
     "type": "library",
     "homepage": "https://github.com/php-optional",
+    "keywords": [
+        "Option",
+        "Optional",
+        "Maybe",
+        "NullObject",
+        "Some",
+        "None"
+    ],
     "authors": [
         {
             "name": "Randy Schuett ",
