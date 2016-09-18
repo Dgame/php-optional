@@ -30,7 +30,7 @@
             "src/"
         ],
         "files": [
-            "src/Optional.php"
+            "src/functions.php"
         ],
         "psr-4": {
             "Dgame\\Optional\\": "src/"

@@ -1,17 +1,17 @@
 <?php
 
-namespace Dgame\Iterator\Optional;
+namespace Dgame\Optional;
 
 /**
  * Class NullObject
- * @package Dgame\Iterator\Optional
+ * @package Dgame\Optional
  */
 final class NullObject
 {
     /**
      * @var NullObject
      */
-    private static $instance = null;
+    private static $instance;
 
     /**
      * NullObject constructor.
@@ -23,7 +23,7 @@ final class NullObject
     /**
      * @return NullObject
      */
-    public static function Instance() : NullObject
+    public static function Instance(): NullObject
     {
         if (self::$instance === null) {
             self::$instance = new self();

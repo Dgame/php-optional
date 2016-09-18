@@ -1,17 +1,17 @@
 <?php
 
-namespace Dgame\Iterator\Optional;
+namespace Dgame\Optional;
 
 /**
  * Class None
- * @package Dgame\Iterator\Optional
+ * @package Dgame\Optional
  */
 final class None extends Optional
 {
     /**
      * @var None
      */
-    private static $instance = null;
+    private static $instance;
 
     /**
      * None constructor.
@@ -23,7 +23,7 @@ final class None extends Optional
     /**
      * @return None
      */
-    public static function Instance() : None
+    public static function Instance(): None
     {
         if (self::$instance === null) {
             self::$instance = new self();
@@ -35,7 +35,7 @@ final class None extends Optional
     /**
      * @return bool
      */
-    public function isNone() : bool
+    public function isNone(): bool
     {
         return true;
     }
@@ -61,7 +61,7 @@ final class None extends Optional
      *
      * @return Optional
      */
-    public function ensure(callable $callback) : Optional
+    public function ensure(callable $callback): Optional
     {
         return $this;
     }
@@ -69,7 +69,7 @@ final class None extends Optional
     /**
      * @return string
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         return 'None';
     }

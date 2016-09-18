@@ -1,10 +1,10 @@
 <?php
 
-namespace Dgame\Iterator\Optional;
+namespace Dgame\Optional;
 
 /**
  * Class Optional
- * @package Dgame\Iterator\Optional
+ * @package Dgame\Optional
  */
 abstract class Optional
 {
@@ -13,7 +13,7 @@ abstract class Optional
      *
      * @return bool
      */
-    public function isSome(&$some = null) : bool
+    public function isSome(&$some = null): bool
     {
         return false;
     }
@@ -21,7 +21,7 @@ abstract class Optional
     /**
      * @return bool
      */
-    public function isNone() : bool
+    public function isNone(): bool
     {
         return false;
     }
@@ -41,7 +41,7 @@ abstract class Optional
      *
      * @return Optional
      */
-    abstract public function ensure(callable $callback) : Optional;
+    abstract public function ensure(callable $callback): Optional;
 
     /**
      * @param callable          $callback
@@ -50,7 +50,7 @@ abstract class Optional
      * @return Some
      * @throws \Exception
      */
-    final public function enforce(callable $callback, $exception) : Some
+    final public function enforce(callable $callback, $exception): Some
     {
         $result = $this->ensure($callback);
         if ($result->isNone()) {
@@ -61,38 +61,6 @@ abstract class Optional
             throw new \Exception($exception);
         }
 
-        return $result;
+        return new Some($result->unwrap());
     }
-}
-
-/**
- * @param $value
- *
- * @return Some
- */
-function some($value) : Some
-{
-    return new Some($value);
-}
-
-/**
- * @return None
- */
-function none() : None
-{
-    return None::Instance();
-}
-
-/**
- * @param $value
- *
- * @return Optional
- */
-function maybe($value) : Optional
-{
-    if (Some::Verify($value)) {
-        return some($value);
-    }
-
-    return none();
 }

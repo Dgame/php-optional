@@ -2,11 +2,11 @@
 
 require_once '../vendor/autoload.php';
 
-use Dgame\Iterator\Optional\NullObject;
+use Dgame\Optional\NullObject;
 use PHPUnit\Framework\TestCase;
-use function Dgame\Iterator\Optional\maybe;
-use function Dgame\Iterator\Optional\none;
-use function Dgame\Iterator\Optional\some;
+use function Dgame\Optional\maybe;
+use function Dgame\Optional\none;
+use function Dgame\Optional\some;
 
 class TestOptional extends TestCase
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Dgame\Iterator\Optional;
+namespace Dgame\Optional;
 
 /**
  * Class Some
- * @package Dgame\Iterator\Optional
+ * @package Dgame\Optional
  */
 final class Some extends Optional
 {
