@@ -27,7 +27,7 @@ function none(): None
  */
 function maybe($value): Optional
 {
-    if (Some::Verify($value)) {
+    if ($value !== false && $value !== null) {
         return some($value);
     }
 

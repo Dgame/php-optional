@@ -8,7 +8,7 @@ use function Dgame\Optional\maybe;
 use function Dgame\Optional\none;
 use function Dgame\Optional\some;
 
-class TestOptional extends TestCase
+class OptionalTest extends TestCase
 {
     public function testSome()
     {
@@ -43,6 +43,9 @@ class TestOptional extends TestCase
     public function testMaybe()
     {
         $maybe = maybe(null);
+        $this->assertTrue($maybe->isNone());
+
+        $maybe = maybe(false);
         $this->assertTrue($maybe->isNone());
 
         $maybe = maybe(42);

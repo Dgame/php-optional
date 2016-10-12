@@ -11,17 +11,7 @@ final class Some extends Optional
     /**
      * @var mixed
      */
-    private $value = null;
-
-    /**
-     * @param $value
-     *
-     * @return bool
-     */
-    public static function Verify($value) : bool
-    {
-        return $value !== null;
-    }
+    private $value;
 
     /**
      * Some constructor.
@@ -30,23 +20,17 @@ final class Some extends Optional
      */
     public function __construct($value)
     {
-        if (!self::Verify($value)) {
-            throw new \Exception('That is not a valid value');
-        }
-
         $this->value = $value;
     }
 
     /**
-     * @param null|mixed $some
+     * @param null|mixed $value
      *
      * @return bool
      */
-    public function isSome(&$some = null) : bool
+    public function isSome(&$value = null) : bool
     {
-        if (func_num_args() !== 0) {
-            $some = $this->value;
-        }
+        $value = $this->value;
 
         return true;
     }

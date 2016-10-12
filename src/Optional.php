@@ -9,11 +9,11 @@ namespace Dgame\Optional;
 abstract class Optional
 {
     /**
-     * @param null|mixed $some
+     * @param null|mixed $value
      *
      * @return bool
      */
-    public function isSome(&$some = null): bool
+    public function isSome(&$value = null): bool
     {
         return false;
     }
