@@ -29,7 +29,9 @@ class OptionalTest extends TestCase
     {
         $none = none();
         $this->assertTrue($none->isNone());
-        $this->assertFalse($none->isSome());
+        $c = 42;
+        $this->assertFalse($none->isSome($c));
+        $this->assertNull($c);
     }
 
     public function testNoneByRef()

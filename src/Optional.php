@@ -15,6 +15,8 @@ abstract class Optional
      */
     public function isSome(&$value = null): bool
     {
+        $value = null;
+
         return false;
     }
 
