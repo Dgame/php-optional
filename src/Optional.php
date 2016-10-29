@@ -39,6 +39,13 @@ abstract class Optional
     abstract public function unwrap();
 
     /**
+     * @param $value
+     *
+     * @return mixed
+     */
+    abstract public function default($value);
+
+    /**
      * @param callable $callback
      *
      * @return Optional

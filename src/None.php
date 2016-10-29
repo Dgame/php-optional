@@ -57,6 +57,16 @@ final class None extends Optional
     }
 
     /**
+     * @param $value
+     *
+     * @return mixed
+     */
+    public function default($value)
+    {
+        return $value;
+    }
+
+    /**
      * @param callable $callback
      *
      * @return Optional

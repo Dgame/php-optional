@@ -52,6 +52,16 @@ final class Some extends Optional
     }
 
     /**
+     * @param $value
+     *
+     * @return mixed
+     */
+    public function default($value)
+    {
+        return $this->value;
+    }
+
+    /**
      * @param callable $callback
      *
      * @return Optional
