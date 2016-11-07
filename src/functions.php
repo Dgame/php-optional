@@ -21,15 +21,27 @@ function none(): None
 }
 
 /**
- * @param $value
+ * @param          $value
+ * @param callable $callback
  *
  * @return Optional
  */
-function maybe($value): Optional
+function maybe($value, callable $callback = null): Optional
 {
-    if ($value !== false && $value !== null) {
+    $callback = $callback ?? 'Dgame\Optional\verify';
+    if ($callback($value)) {
         return some($value);
     }
 
     return none();
+}
+
+/**
+ * @param $value
+ *
+ * @return bool
+ */
+function verify($value): bool
+{
+    return $value !== false && $value !== null;
 }
