@@ -1,4 +1,7 @@
 # php-optional
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Dgame/php-optional/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Dgame/php-optional/?branch=master)
+
 Rust-like Optional-type for PHP 7
 
 ### Some - a valid Value
