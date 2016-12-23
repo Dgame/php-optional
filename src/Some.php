@@ -28,7 +28,7 @@ final class Some extends Optional
      *
      * @return bool
      */
-    public function isSome(&$value = null) : bool
+    public function isSome(&$value = null): bool
     {
         $value = $this->value;
 
@@ -66,7 +66,7 @@ final class Some extends Optional
      *
      * @return Optional
      */
-    public function ensure(callable $callback) : Optional
+    public function ensure(callable $callback): Optional
     {
         if ($callback($this->value)) {
             return $this;
@@ -78,7 +78,7 @@ final class Some extends Optional
     /**
      * @return string
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         return sprintf('Some(%s)', var_export($this->value, true));
     }
