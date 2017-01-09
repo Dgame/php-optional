@@ -35,5 +35,10 @@
         "psr-4": {
             "Dgame\\Optional\\": "src/"
         }
+    },
+    "scripts": {
+        "test": [
+            "phpunit"
+        ]
     }
 }

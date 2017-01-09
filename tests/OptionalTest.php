@@ -1,7 +1,5 @@
 <?php
 
-require_once '../vendor/autoload.php';
-
 use Dgame\Optional\NullObject;
 use PHPUnit\Framework\TestCase;
 use function Dgame\Optional\maybe;

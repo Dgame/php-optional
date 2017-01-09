@@ -1,0 +1,13 @@
+language: php
+php:
+  - 7.0
+  - 7.1
+  - nightly
+before_script:
+  - composer self-update
+  - composer update
+script:
+  - composer test
+  - vendor/bin/phpunit --coverage-clover=coverage.xml
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
