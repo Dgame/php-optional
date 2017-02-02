@@ -1,6 +1,5 @@
 <?php
 
-use Dgame\Optional\NullObject;
 use PHPUnit\Framework\TestCase;
 use function Dgame\Optional\maybe;
 use function Dgame\Optional\none;
@@ -45,7 +44,7 @@ class OptionalTest extends TestCase
         $maybe = maybe(null);
         $this->assertTrue($maybe->isNone());
 
-        $maybe = maybe(false);
+        $maybe = maybe(false)->ensureNotFalse();
         $this->assertTrue($maybe->isNone());
 
         $maybe = maybe(42);
@@ -65,10 +64,6 @@ class OptionalTest extends TestCase
 
         $some = some($a);
         $this->assertEquals(42, $some->unwrap()->test());
-        $this->assertEquals(42, $some->assume()->test());
-
-        $none = none();
-        $this->assertSame(NullObject::Instance(), $none->assume()->test());
     }
 
     public function testEnsure()
@@ -77,15 +72,9 @@ class OptionalTest extends TestCase
             return $value > 0;
         });
         $this->assertTrue($result->isNone());
-    }
-
-    public function testEnforce()
-    {
-        $this->expectException(Exception::class);
-        $this->expectExceptionMessage('None');
-
-        some(0)->enforce(function($value) {
+        $result = maybe(null)->ensure(function($value) {
             return $value > 0;
-        }, new Exception('None'));
+        });
+        $this->assertTrue($result->isNone());
     }
 }

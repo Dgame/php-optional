@@ -17,31 +17,15 @@ function some($value): Some
  */
 function none(): None
 {
-    return None::Instance();
-}
-
-/**
- * @param          $value
- * @param callable $callback
- *
- * @return Optional
- */
-function maybe($value, callable $callback = null): Optional
-{
-    $callback = $callback ?? 'Dgame\Optional\verify';
-    if ($callback($value)) {
-        return some($value);
-    }
-
-    return none();
+    return None::instance();
 }
 
 /**
  * @param $value
  *
- * @return bool
+ * @return OptionalInterface
  */
-function verify($value): bool
+function maybe($value): OptionalInterface
 {
-    return $value !== false && $value !== null;
+    return $value !== null ? some($value) : none();
 }

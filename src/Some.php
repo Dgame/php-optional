@@ -2,11 +2,13 @@
 
 namespace Dgame\Optional;
 
+use function Dgame\Ensurance\enforce;
+
 /**
  * Class Some
  * @package Dgame\Optional
  */
-final class Some extends Optional
+final class Some extends AbstractOptional
 {
     /**
      * @var mixed
@@ -20,11 +22,13 @@ final class Some extends Optional
      */
     public function __construct($value)
     {
+        enforce($value !== null)->orThrow('Value cannot be null');
+
         $this->value = $value;
     }
 
     /**
-     * @param null|mixed $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -38,25 +42,7 @@ final class Some extends Optional
     /**
      * @return mixed
      */
-    public function assume()
-    {
-        return $this->unwrap();
-    }
-
-    /**
-     * @return mixed
-     */
     public function unwrap()
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param $value
-     *
-     * @return mixed
-     */
-    public function default($value)
     {
         return $this->value;
     }
@@ -64,22 +50,30 @@ final class Some extends Optional
     /**
      * @param callable $callback
      *
-     * @return Optional
+     * @return OptionalInterface
      */
-    public function ensure(callable $callback): Optional
+    public function ensure(callable $callback): OptionalInterface
     {
-        if ($callback($this->value)) {
-            return $this;
-        }
-
-        return None::Instance();
+        return $callback($this->value) ? $this : None::instance();
     }
 
     /**
-     * @return string
+     * @param $value
+     *
+     * @return bool
      */
-    public function __toString(): string
+    public function isEqualTo($value): bool
     {
-        return sprintf('Some(%s)', var_export($this->value, true));
+        return $value == $this->value;
+    }
+
+    /**
+     * @param $value
+     *
+     * @return bool
+     */
+    public function isIdenticalTo($value): bool
+    {
+        return $value === $this->value;
     }
 }

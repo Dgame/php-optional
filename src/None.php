@@ -2,11 +2,13 @@
 
 namespace Dgame\Optional;
 
+use Exception;
+
 /**
  * Class None
  * @package Dgame\Optional
  */
-final class None extends Optional
+final class None extends AbstractOptional
 {
     /**
      * @var None
@@ -21,9 +23,16 @@ final class None extends Optional
     }
 
     /**
+     *
+     */
+    private function __clone()
+    {
+    }
+
+    /**
      * @return None
      */
-    public static function Instance(): None
+    public static function instance(): self
     {
         if (self::$instance === null) {
             self::$instance = new self();
@@ -33,54 +42,52 @@ final class None extends Optional
     }
 
     /**
+     * @param mixed $value
+     *
      * @return bool
      */
-    public function isNone(): bool
+    public function isSome(&$value = null): bool
     {
-        return true;
+        $value = null;
+
+        return false;
     }
 
     /**
-     * @return NullObject
-     */
-    public function assume()
-    {
-        return NullObject::Instance();
-    }
-
-    /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function unwrap()
     {
-        throw new \Exception('No value');
-    }
-
-    /**
-     * @param $value
-     *
-     * @return mixed
-     */
-    public function default($value)
-    {
-        return $value;
+        throw new Exception('Access to None value');
     }
 
     /**
      * @param callable $callback
      *
-     * @return Optional
+     * @return OptionalInterface
      */
-    public function ensure(callable $callback): Optional
+    public function ensure(callable $callback): OptionalInterface
     {
         return $this;
     }
 
     /**
-     * @return string
+     * @param $value
+     *
+     * @return bool
      */
-    public function __toString(): string
+    public function isEqualTo($value): bool
     {
-        return 'None';
+        return $value == null;
+    }
+
+    /**
+     * @param $value
+     *
+     * @return bool
+     */
+    public function isIdenticalTo($value): bool
+    {
+        return $value === null;
     }
 }
