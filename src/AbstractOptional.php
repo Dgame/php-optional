@@ -37,20 +37,6 @@ abstract class AbstractOptional implements OptionalInterface
     }
 
     /**
-     * @param callable $callback
-     *
-     * @return callable
-     */
-    public function fetch(callable $callback): callable
-    {
-        if ($this->isSome($value)) {
-            return $callback($value);
-        }
-
-        return null;
-    }
-
-    /**
      * @return OptionalInterface
      */
     final public function ensureNotFalse(): OptionalInterface

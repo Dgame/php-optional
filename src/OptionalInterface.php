@@ -76,11 +76,4 @@ interface OptionalInterface
      * @param callable $callback
      */
     public function do(callable $callback);
-
-    /**
-     * @param callable $callback
-     *
-     * @return callable
-     */
-    public function fetch(callable $callback): callable;
 }
