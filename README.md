@@ -52,12 +52,3 @@ $result = some(0)->ensure(function($value) {
 });
 $this->assertTrue($result->isNone());
 ```
-
-### Enforce that a condition is fulfilled
-```php
-$this->expectException(Exception::class);
-$this->expectExceptionMessage('None');
-some(0)->enforce(function($value) {
-    return $value > 0;
-}, new Exception('None'));
-```
