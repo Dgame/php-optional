@@ -22,8 +22,6 @@ final class Some extends OptionalBase
      */
     public function __construct($value)
     {
-        enforce($value !== null)->orThrow('Value cannot be null');
-
         $this->value = $value;
     }
 
