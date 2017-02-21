@@ -3,10 +3,10 @@
 namespace Dgame\Optional;
 
 /**
- * Interface OptionalInterface
+ * Interface Optional
  * @package Dgame\Optional
  */
-interface OptionalInterface
+interface Optional
 {
     /**
      * @param mixed $value
@@ -35,12 +35,12 @@ interface OptionalInterface
     /**
      * @param callable $callback
      *
-     * @return OptionalInterface
+     * @return Optional
      */
     public function ensure(callable $callback): self;
 
     /**
-     * @return OptionalInterface
+     * @return Optional
      */
     public function ensureNotFalse(): self;
 

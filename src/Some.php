@@ -8,7 +8,7 @@ use function Dgame\Ensurance\enforce;
  * Class Some
  * @package Dgame\Optional
  */
-final class Some extends AbstractOptional
+final class Some extends OptionalBase
 {
     /**
      * @var mixed
@@ -50,9 +50,9 @@ final class Some extends AbstractOptional
     /**
      * @param callable $callback
      *
-     * @return OptionalInterface
+     * @return Optional
      */
-    public function ensure(callable $callback): OptionalInterface
+    public function ensure(callable $callback): Optional
     {
         return $callback($this->value) ? $this : None::instance();
     }

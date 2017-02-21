@@ -3,10 +3,10 @@
 namespace Dgame\Optional;
 
 /**
- * Class AbstractOptional
+ * Class OptionalBase
  * @package Dgame\Optional
  */
-abstract class AbstractOptional implements OptionalInterface
+abstract class OptionalBase implements Optional
 {
     /**
      * @return bool
@@ -37,9 +37,9 @@ abstract class AbstractOptional implements OptionalInterface
     }
 
     /**
-     * @return OptionalInterface
+     * @return Optional
      */
-    final public function ensureNotFalse(): OptionalInterface
+    final public function ensureNotFalse(): Optional
     {
         return $this->ensure(function ($value): bool {
             return $value !== false;

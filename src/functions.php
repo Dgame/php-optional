@@ -23,9 +23,9 @@ function none(): None
 /**
  * @param $value
  *
- * @return OptionalInterface
+ * @return Optional
  */
-function maybe($value): OptionalInterface
+function maybe($value): Optional
 {
     return $value !== null ? some($value) : none();
 }

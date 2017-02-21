@@ -8,7 +8,7 @@ use Exception;
  * Class None
  * @package Dgame\Optional
  */
-final class None extends AbstractOptional
+final class None extends OptionalBase
 {
     /**
      * @var None
@@ -64,9 +64,9 @@ final class None extends AbstractOptional
     /**
      * @param callable $callback
      *
-     * @return OptionalInterface
+     * @return Optional
      */
-    public function ensure(callable $callback): OptionalInterface
+    public function ensure(callable $callback): Optional
     {
         return $this;
     }
