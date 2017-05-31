@@ -10,6 +10,5 @@ script:
   - composer test
   - vendor/bin/phpunit --coverage-clover=coverage.xml
 after_success:
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover coverage
-  
+  - bash <(curl -s https://codecov.io/bash)
+ 
