@@ -2,8 +2,6 @@
 
 namespace Dgame\Optional;
 
-use function Dgame\Ensurance\enforce;
-
 /**
  * Class Some
  * @package Dgame\Optional

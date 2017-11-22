@@ -54,8 +54,7 @@ class OptionalTest extends TestCase
 
     public function testChain()
     {
-        $a = new class
-        {
+        $a = new class() {
             public function test() : int
             {
                 return 42;
@@ -68,11 +67,11 @@ class OptionalTest extends TestCase
 
     public function testEnsure()
     {
-        $result = some(0)->ensure(function($value) {
+        $result = some(0)->ensure(function ($value) {
             return $value > 0;
         });
         $this->assertTrue($result->isNone());
-        $result = maybe(null)->ensure(function($value) {
+        $result = maybe(null)->ensure(function ($value) {
             return $value > 0;
         });
         $this->assertTrue($result->isNone());
