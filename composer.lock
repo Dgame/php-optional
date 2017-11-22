@@ -4,62 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "29062e5c23a048c0a96b7544e8a65cd4",
-    "packages": [
-        {
-            "name": "dgame/php-ensurance",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Dgame/php-ensurance.git",
-                "reference": "166cadd59bb29cd24d9bc97349fdde0d9f8c29fd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Dgame/php-ensurance/zipball/166cadd59bb29cd24d9bc97349fdde0d9f8c29fd",
-                "reference": "166cadd59bb29cd24d9bc97349fdde0d9f8c29fd",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^6.4"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ],
-                "files": [
-                    "src/functions.php"
-                ],
-                "psr-4": {
-                    "Dgame\\Ensurance\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Randy Schuett",
-                    "email": "rswhite4@gmail.com",
-                    "homepage": "https://github.com/php-ensurance"
-                }
-            ],
-            "description": "php ensurance",
-            "homepage": "https://github.com/php-ensurance",
-            "keywords": [
-                "Design by contract",
-                "Enforcement",
-                "Ensurance",
-                "assertion"
-            ],
-            "time": "2017-11-22T12:03:25+00:00"
-        }
-    ],
+    "content-hash": "e446341702cfc270354fececfe54041f",
+    "packages": [],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
