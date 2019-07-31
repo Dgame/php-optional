@@ -16,7 +16,7 @@ final class Some extends OptionalBase
     /**
      * Some constructor.
      *
-     * @param $value
+     * @param mixed $value
      */
     public function __construct($value)
     {
@@ -54,7 +54,7 @@ final class Some extends OptionalBase
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -64,7 +64,7 @@ final class Some extends OptionalBase
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return bool
      */

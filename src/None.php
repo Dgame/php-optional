@@ -3,6 +3,7 @@
 namespace Dgame\Optional;
 
 use Exception;
+use RuntimeException;
 
 /**
  * Class None
@@ -58,7 +59,7 @@ final class None extends OptionalBase
      */
     public function unwrap()
     {
-        throw new Exception('Access to None value');
+        throw new RuntimeException('Access to None value');
     }
 
     /**
@@ -72,7 +73,7 @@ final class None extends OptionalBase
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -82,7 +83,7 @@ final class None extends OptionalBase
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return bool
      */

@@ -3,7 +3,7 @@
 namespace Dgame\Optional;
 
 /**
- * @param $value
+ * @param mixed $value
  *
  * @return Some
  */
@@ -21,7 +21,7 @@ function none(): None
 }
 
 /**
- * @param $value
+ * @param mixed $value
  *
  * @return Optional
  */

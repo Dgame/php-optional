@@ -17,7 +17,7 @@ abstract class OptionalBase implements Optional
     }
 
     /**
-     * @param $default
+     * @param mixed $default
      *
      * @return mixed
      */
@@ -41,13 +41,13 @@ abstract class OptionalBase implements Optional
      */
     final public function ensureNotFalse(): Optional
     {
-        return $this->ensure(function ($value): bool {
+        return $this->ensure(static function ($value): bool {
             return $value !== false;
         });
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -57,7 +57,7 @@ abstract class OptionalBase implements Optional
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return bool
      */

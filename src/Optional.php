@@ -26,7 +26,7 @@ interface Optional
     public function unwrap();
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return mixed
      */
@@ -45,28 +45,28 @@ interface Optional
     public function ensureNotFalse(): self;
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return bool
      */
     public function isEqualTo($value): bool;
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return bool
      */
     public function isNotEqualTo($value): bool;
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return bool
      */
     public function isIdenticalTo($value): bool;
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return bool
      */
