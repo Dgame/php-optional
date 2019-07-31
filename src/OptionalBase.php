@@ -29,7 +29,7 @@ abstract class OptionalBase implements Optional
     /**
      * @param callable $callback
      */
-    final public function do(callable $callback)
+    final public function do(callable $callback): void
     {
         if ($this->isSome($value)) {
             $callback($value);

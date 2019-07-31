@@ -1,20 +1,20 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
 use function Dgame\Optional\maybe;
 use function Dgame\Optional\none;
 use function Dgame\Optional\some;
+use PHPUnit\Framework\TestCase;
 
 class OptionalTest extends TestCase
 {
-    public function testSome()
+    public function testSome(): void
     {
         $some = some(42);
         $this->assertTrue($some->isSome());
         $this->assertEquals(42, $some->unwrap());
     }
 
-    public function testSomeByRef()
+    public function testSomeByRef(): void
     {
         $some = some(42);
         $this->assertTrue($some->isSome($value));
@@ -22,7 +22,7 @@ class OptionalTest extends TestCase
         $this->assertEquals(42, $value);
     }
 
-    public function testNone()
+    public function testNone(): void
     {
         $none = none();
         $this->assertTrue($none->isNone());
@@ -31,7 +31,7 @@ class OptionalTest extends TestCase
         $this->assertNull($c);
     }
 
-    public function testNoneByRef()
+    public function testNoneByRef(): void
     {
         $none = none();
         $this->assertTrue($none->isNone());
@@ -39,7 +39,7 @@ class OptionalTest extends TestCase
         $this->assertNull($value);
     }
 
-    public function testMaybe()
+    public function testMaybe(): void
     {
         $maybe = maybe(null);
         $this->assertTrue($maybe->isNone());
@@ -52,10 +52,10 @@ class OptionalTest extends TestCase
         $this->assertEquals(42, $maybe->unwrap());
     }
 
-    public function testChain()
+    public function testChain(): void
     {
         $a = new class() {
-            public function test() : int
+            public function test(): int
             {
                 return 42;
             }
@@ -65,7 +65,7 @@ class OptionalTest extends TestCase
         $this->assertEquals(42, $some->unwrap()->test());
     }
 
-    public function testEnsure()
+    public function testEnsure(): void
     {
         $result = some(0)->ensure(function ($value) {
             return $value > 0;

@@ -57,7 +57,7 @@ final class None extends OptionalBase
     /**
      * @throws Exception
      */
-    public function unwrap()
+    public function unwrap(): void
     {
         throw new RuntimeException('Access to None value');
     }
