@@ -30,16 +30,15 @@
         "classmap": [
             "src/"
         ],
-        "files": [
-            "src/functions.php"
-        ],
         "psr-4": {
-            "Dgame\\Optional\\": "src/"
+            "Dgame\\Optional\\": "src/",
+            "Dgame\\Optional\\Test\\": "tests/"
         }
     },
     "scripts": {
         "test": [
-            "phpunit"
+            "phpunit",
+            "phpstan analyse src --level=7"
         ]
     }
 }

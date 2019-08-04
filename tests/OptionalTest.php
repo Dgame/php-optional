@@ -1,22 +1,23 @@
 <?php
 
-use function Dgame\Optional\maybe;
-use function Dgame\Optional\none;
-use function Dgame\Optional\some;
+namespace Dgame\Optional\Test;
+
 use PHPUnit\Framework\TestCase;
+
+use Dgame\Optional\Optional;
 
 class OptionalTest extends TestCase
 {
     public function testSome(): void
     {
-        $some = some(42);
+        $some = Optional::some(42);
         $this->assertTrue($some->isSome());
-        $this->assertEquals(42, $some->unwrap());
+        $this->assertEquals(42, $some->get());
     }
 
     public function testSomeByRef(): void
     {
-        $some = some(42);
+        $some = Optional::some(42);
         $this->assertTrue($some->isSome($value));
         $this->assertFalse($some->isNone());
         $this->assertEquals(42, $value);
@@ -24,7 +25,7 @@ class OptionalTest extends TestCase
 
     public function testNone(): void
     {
-        $none = none();
+        $none = Optional::none();
         $this->assertTrue($none->isNone());
         $c = 42;
         $this->assertFalse($none->isSome($c));
@@ -33,23 +34,10 @@ class OptionalTest extends TestCase
 
     public function testNoneByRef(): void
     {
-        $none = none();
+        $none =  Optional::none();
         $this->assertTrue($none->isNone());
         $this->assertFalse($none->isSome($value));
         $this->assertNull($value);
-    }
-
-    public function testMaybe(): void
-    {
-        $maybe = maybe(null);
-        $this->assertTrue($maybe->isNone());
-
-        $maybe = maybe(false)->ensureNotFalse();
-        $this->assertTrue($maybe->isNone());
-
-        $maybe = maybe(42);
-        $this->assertTrue($maybe->isSome());
-        $this->assertEquals(42, $maybe->unwrap());
     }
 
     public function testChain(): void
@@ -61,19 +49,7 @@ class OptionalTest extends TestCase
             }
         };
 
-        $some = some($a);
-        $this->assertEquals(42, $some->unwrap()->test());
-    }
-
-    public function testEnsure(): void
-    {
-        $result = some(0)->ensure(function ($value) {
-            return $value > 0;
-        });
-        $this->assertTrue($result->isNone());
-        $result = maybe(null)->ensure(function ($value) {
-            return $value > 0;
-        });
-        $this->assertTrue($result->isNone());
+        $some =  Optional::some($a);
+        $this->assertEquals(42, $some->get()->test());
     }
 }
