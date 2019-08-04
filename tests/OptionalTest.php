@@ -2,9 +2,9 @@
 
 namespace Dgame\Optional\Test;
 
-use PHPUnit\Framework\TestCase;
-
 use Dgame\Optional\Optional;
+
+use PHPUnit\Framework\TestCase;
 
 class OptionalTest extends TestCase
 {

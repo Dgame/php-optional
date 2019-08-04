@@ -180,9 +180,9 @@ final class Optional
      */
     public function drain()
     {
-        $value = null;
+        $value                 = null;
         [$value, $this->value] = [$this->value, $value];
-        $this->isSome = false;
+        $this->isSome          = false;
 
         return $value;
     }
