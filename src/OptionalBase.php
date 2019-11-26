@@ -65,4 +65,14 @@ abstract class OptionalBase implements Optional
     {
         return !$this->isIdenticalTo($value);
     }
+
+    /**
+     * @param mixed $value
+     * 
+     * @return bool
+     */
+    final public function __invoke(&$value = null): bool
+    {
+        return $this->isSome($value);
+    }
 }
