@@ -11,6 +11,7 @@ class OptionalTest extends TestCase
     {
         $some = some(42);
         $this->assertTrue($some->isSome());
+        $this->assertTrue($some());
         $this->assertEquals(42, $some->unwrap());
     }
 
@@ -18,8 +19,10 @@ class OptionalTest extends TestCase
     {
         $some = some(42);
         $this->assertTrue($some->isSome($value));
+        $this->assertTrue($some($value2));
         $this->assertFalse($some->isNone());
         $this->assertEquals(42, $value);
+        $this->assertEquals($value, $value2);
     }
 
     public function testNone(): void
@@ -28,6 +31,7 @@ class OptionalTest extends TestCase
         $this->assertTrue($none->isNone());
         $c = 42;
         $this->assertFalse($none->isSome($c));
+        $this->assertFalse($none());
         $this->assertNull($c);
     }
 
@@ -36,6 +40,7 @@ class OptionalTest extends TestCase
         $none = none();
         $this->assertTrue($none->isNone());
         $this->assertFalse($none->isSome($value));
+        $this->assertFalse($none($value));
         $this->assertNull($value);
     }
 
